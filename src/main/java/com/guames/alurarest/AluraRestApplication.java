@@ -8,6 +8,7 @@ public class AluraRestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AluraRestApplication.class, args);
+		
 	}
 
 }
