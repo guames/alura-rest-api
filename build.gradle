@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'maven'
+	id 'maven-publish'
+}
+
+group = 'com.guames'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+    maven { url "http://172.30.1.22:8081/repository/maven-public" }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+	ignoreFailures = true
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+eclipse {
+	project {
+		buildCommands.clear();
+		buildCommand 'org.eclipse.jdt.core.javabuilder'
+		buildCommand 'org.eclipse.buildship.core.gradleprojectbuilder'
+    }
+	classpath {
+		downloadSources = true
+		downloadJavadoc = false
+	}
+}
+
+
+
